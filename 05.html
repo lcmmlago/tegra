@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 05</h1>
+        <form>
+            <label for="raio">Raio do Círculo:</label><br>
+            <input type="number" id="raio" name="raio" oninput="validate1(this)" step=".1"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="area"></p>
+    </div>
+    <script>
+
+        var validate1 = function(e) {
+          var t = e.value;
+          e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 2)) : t;
+        }
+        
+        function calculaValores() {
+
+        
+            let raio = document.getElementById("raio").value;
+
+            if (raio.length == 0) {
+                alert('Raio é obrigatório')
+                exit;
+            }
+
+            let area = Math.PI * Math.pow(raio,2);
+            
+            document.getElementById("area").innerHTML  =
+            "Area do Círculo: " + area.toFixed(3);
+        }
+    </script>
+</body>
+</html>
