@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 01</h1>
+        <form>
+            <label for="largura">Largura do Terreno:</label><br>
+            <input type="number" id="largura" name="largura" oninput="validate1(this)" step=".1"><br>
+            <label for="comprimento">Comprimento do Terreno:</label><br>
+            <input type="number" id="comprimento" name="comprimento" oninput="validate1(this)" step=".1"><br>
+            <label for="valorm2">Valor do m2:</label><br>
+            <input type="number" id="valorm2" name="comprimento" oninput="validate2(this)" step=".01"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="area"></p>
+        <p id="valor"></p>
+    </div>
+    <script>
+
+        var validate1 = function(e) {
+          var t = e.value;
+          e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 2)) : t;
+        }
+        
+        var validate2 = function(e) {
+          var t = e.value;
+          e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
+        }
+        
+        function calculaValores() {
+
+        
+            let largura = document.getElementById("largura").value;
+            let comprimento = document.getElementById("comprimento").value;
+            let valorm2 = document.getElementById("valorm2").value;
+            
+            let area = largura * comprimento;
+            let valor = area * valorm2;
+
+            if (largura.length == 0) {
+                alert('Largura é obrigatório')
+                exit;
+            }
+
+            if (comprimento.length == 0) {
+                alert('Comprimento é obrigatório');
+                exit;
+            }
+
+            if (valorm2.length == 0) {
+                alert('Valor m2 é obrigatório')
+                exit;
+            }
+        
+            document.getElementById("area").innerHTML  =
+            "Area do Terreno: " + area.toFixed(2); + " m2";
+            document.getElementById("valor").innerHTML =
+            "Preço do Terreno: " + valor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});;
+        }
+    </script>
+</body>
+</html>
