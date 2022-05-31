@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 02</h1>
+        <form>
+            <label for="base">Base do Retângulo:</label><br>
+            <input type="number" id="base" name="base" oninput="validate1(this)" step=".1"><br>
+            <label for="altura">Altura do Retângulo:</label><br>
+            <input type="number" id="altura" name="altura" oninput="validate1(this)" step=".1"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="area"></p>
+        <p id="perimetro"></p>
+        <p id="diagonal"></p>
+    </div>
+    <script>
+
+        var validate1 = function(e) {
+          var t = e.value;
+          e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 2)) : t;
+        }
+        
+        var validate2 = function(e) {
+          var t = e.value;
+          e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
+        }
+        
+        function calculaValores() {
+
+        
+            let base = document.getElementById("base").value;
+            let altura = document.getElementById("altura").value;
+            
+            if (base.length == 0) {
+                alert('Base é obrigatório')
+                exit;
+            }
+
+            if (altura.length == 0) {
+                alert('Altura é obrigatória');
+                exit;
+            }
+            
+            let area = base * altura;
+            let perimetro = Number(base) + Number(altura);
+            let diagonal = Math.sqrt(Math.pow(base,2) + Math.pow(altura,2))
+
+            document.getElementById("area").innerHTML  =
+            "Area do Retângulo: " + area.toFixed(4);
+            document.getElementById("perimetro").innerHTML =
+            "Perímetro do Retângulo: " + perimetro.toFixed(4);
+            document.getElementById("diagonal").innerHTML =
+            "Diagonal do Retângulo: " + diagonal.toFixed(4);
+        }
+    </script>
+</body>
+</html>
