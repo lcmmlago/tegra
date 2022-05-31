@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 06</h1>
+        <form>
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome"><br>
+            <label for="valor_hora">Valor por hora:</label><br>
+            <input type="number" id="valor_hora" name="valor_hora" oninput="validate2(this)" step=".01"><br>
+            <label for="horas">Horas trabalhadas:</label><br>
+            <input type="number" id="horas" name="horas"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="resposta"></p>
+    </div>
+    <script>
+
+        var validate2 = function(e) {
+          var t = e.value;
+          e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
+        }
+        
+        function calculaValores() {
+
+        
+            let nome = document.getElementById("nome").value;
+            let valorHora = document.getElementById("valor_hora").value;
+            let horas = document.getElementById("horas").value;
+            
+            let pgto = Number(valorHora) * Number(horas);
+            
+            if (nome.length == 0) {
+                alert('Nome é obrigatório')
+                exit;
+            }
+
+            if (valorHora.length == 0) {
+                alert('Valor hora é obrigatório');
+                exit;
+            }
+
+            if (horas.length == 0) {
+                alert('Horas trabalhadas é obrigatório')
+                exit;
+            }
+        
+            document.getElementById("resposta").innerHTML  =
+            "O pagamento para " + nome + " deve ser " + pgto.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+        }
+    </script>
+</body>
+</html>
