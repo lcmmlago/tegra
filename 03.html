@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 03</h1>
+        <form>
+            <label for="nome1">Nome 1:</label><br>
+            <input type="text" id="nome1" name="nome1"><br>
+            <label for="idade1">Idade 1:</label><br>
+            <input type="number" id="idade1" name="idade1"><br>
+            <label for="nome2">Nome 2:</label><br>
+            <input type="text" id="nome2" name="nome2"><br>
+            <label for="idade2">Idade 2:</label><br>
+            <input type="number" id="idade2" name="idade2"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="resposta"></p>
+    </div>
+    <script>
+
+        function calculaValores() {
+
+        
+            let nome1 = document.getElementById("nome1").value;
+            let nome2 = document.getElementById("nome2").value;
+            let idade1 = document.getElementById("idade1").value;
+            let idade2 = document.getElementById("idade2").value;
+            
+            if (nome1.length == 0) {
+                alert('Nome 1 é obrigatório')
+                exit;
+            }
+
+            if (nome2.length == 0) {
+                alert('Nome 2 é obrigatório')
+                exit;
+            }
+
+            if (idade1.length == 0) {
+                alert('Idade 1 é obrigatória');
+                exit;
+            }
+
+            if (idade2.length == 0) {
+                alert('Idade 2 é obrigatória');
+                exit;
+            }
+            
+            let media = (Number(idade1) + Number(idade2))/2;
+            
+            document.getElementById("resposta").innerHTML  =
+            "A idade média de " + nome1 + " e " + nome2 + " é de " + media.toFixed(1) + " anos";
+        }
+    </script>
+</body>
+</html>
