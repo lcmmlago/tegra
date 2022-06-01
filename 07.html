@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 07</h1>
+        <form>
+            <label for="distancia">Distância percorrida:</label><br>
+            <input type="number" id="distancia" name="distancia"><br>
+            <label for="combustivel">Combustível gasto:</label><br>
+            <input type="number" id="combustivel" name="combustivel" oninput="validate2(this)" step=".1"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="resposta"></p>
+    </div>
+    <script>
+
+        var validate2 = function(e) {
+          var t = e.value;
+          e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
+        }
+        
+        function calculaValores() {
+
+            let distancia = document.getElementById("distancia").value;
+            let combustivel = document.getElementById("combustivel").value;
+
+            if (distancia.length == 0) {
+                alert('Distância é obrigatória')
+                return;
+            }
+
+            if (combustivel.length == 0) {
+                alert('Combustível é obrigatório');
+                return;
+            }
+
+            if (Number(combustivel) == 0) {
+                alert('Combustível não pode ser zero')
+                return;
+            }            
+            
+            let autonomia = Number(distancia) / Number(combustivel);
+            document.getElementById("resposta").innerHTML  =
+            "Consumo médio: " + autonomia.toFixed(3);
+        }
+    </script>
+</body>
+</html>

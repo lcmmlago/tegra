@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 08</h1>
+        <form>
+            <label for="lado_a">Digite a medida A:</label><br>
+            <input type="number" id="lado_a" name="lado_a" oninput="validate2(this)" step=".1"><br>
+            <label for="lado_b">Digite a medida B:</label><br>
+            <input type="number" id="lado_b" name="lado_b" oninput="validate2(this)" step=".1"><br>
+            <label for="lado_c">Digite a medida C:</label><br>
+            <input type="number" id="lado_c" name="lado_c" oninput="validate2(this)" step=".1"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="quadrado"></p>
+        <p id="triangulo"></p>
+        <p id="trapezio"></p>
+    </div>
+    <script>
+
+        var validate2 = function(e) {
+          var t = e.value;
+          e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
+        }
+        
+        function calculaValores() {
+
+            let ladoA = document.getElementById("lado_a").value;
+            let ladoB = document.getElementById("lado_b").value;
+            let ladoC = document.getElementById("lado_c").value;
+
+            if (ladoA.length == 0 || Number(ladoA) == 0) {
+                alert('Lado A é obrigatório')
+                return;
+            }
+
+            if (ladoB.length == 0 || Number(ladoB) == 0) {
+                alert('Lado B é obrigatório')
+                return;
+            }
+
+            if (ladoC.length == 0 || Number(ladoC) == 0) {
+                alert('Lado C é obrigatório')
+                return;
+            }
+
+            let quadrado = Math.pow(Number(ladoA),2);
+            let triangulo = (Number(ladoA) * Number(ladoB))/2;
+            let trapezio = (Number(ladoA) + Number(ladoB)) * Number(ladoC)/2;
+
+            document.getElementById("quadrado").innerHTML  =
+            "Área do quadrado: " + quadrado.toFixed(4);
+
+            document.getElementById("triangulo").innerHTML  =
+            "Área do triângulo: " + triangulo.toFixed(4);
+
+            document.getElementById("trapezio").innerHTML  =
+            "Área do trapézio: " + trapezio.toFixed(4);
+        }
+    </script>
+</body>
+</html>

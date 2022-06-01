@@ -39,17 +39,17 @@
 
             if (preco.length == 0) {
                 alert('Preço unitário é obrigatório')
-                exit;
+                return;
             }
 
             if (quantidade.length == 0) {
                 alert('Quantidade é obrigatória');
-                exit;
+                return;
             }
 
             if (dinheiro.length == 0) {
                 alert('Dinheiro recebido é obrigatório')
-                exit;
+                return;
             }
         
             document.getElementById("resposta").innerHTML  =
