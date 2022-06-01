@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 12</h1>
+        <form>
+            <label for="coefA">Coeficiene A:</label><br>
+            <input type="number" id="coefA" name="coefA"><br>
+            <label for="coefB">Coeficiene B:</label><br>
+            <input type="number" id="coefB" name="coefB"><br>
+            <label for="coefC">Coeficiene C:</label><br>
+            <input type="number" id="coefC" name="coefC"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="a"></p>
+        <p id="b"></p>
+        <p id="c"></p>
+        <p id="resposta"></p>
+    </div>
+    <script>
+
+        function calculaValores() {
+
+            let coefA = document.getElementById("coefA").value;
+            let coefB = document.getElementById("coefB").value;
+            let coefC = document.getElementById("coefC").value;
+
+            if (coefA.length == 0) {
+                alert('Coeficiente A é obrigatório')
+                return;
+            }
+
+            if (coefB.length == 0) {
+                alert('Coeficiente B é obrigatório')
+                return;
+            }
+
+            if (coefC.length == 0) {
+                alert('Coeficiente C é obrigatório')
+                return;
+            }
+
+            if (Number(coefA) == 0) {
+                alert('Coeficiente A não pode ser zero')
+                return;
+            }  
+            
+            let resposta;
+            let delta = Math.pow(Number(coefB), 2) - 4 * Number(coefA) * Number(coefC);
+
+            if (delta < 0) {
+                resposta = "Esta equação não possui raízes reais";
+            } else {
+                let x1 = (-Number(coefB) + Math.sqrt(delta)) / (2 * Number(coefA));
+                let x2 = (-Number(coefB) - Math.sqrt(delta)) / (2 * Number(coefA));
+                resposta = "x1 = " + x1.toFixed(4) + " e  x2 = " + x2.toFixed(4);
+            }
+
+            document.getElementById("a").innerHTML  =
+            "Coeficiente A: " + coefA;
+
+            document.getElementById("b").innerHTML  =
+            "Coeficiente B: " + coefB;
+
+            document.getElementById("c").innerHTML  =
+            "Coeficiente C: " + coefC;
+
+            document.getElementById("resposta").innerHTML  = resposta;
+        }        
+
+    </script>
+</body>
+</html>

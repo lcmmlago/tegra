@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 13</h1>
+        <form>
+            <label for="minutos">Digite a quantidade de minutos:</label><br>
+            <input type="number" id="minutos" name="minutos"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="resposta"></p>
+    </div>
+    <script>
+
+        function calculaValores() {
+
+            let minutos = document.getElementById("minutos").value;
+            let minutosPlano = 100;
+            let valorPlano = 50;
+            let valorMinuto = 2;
+            let resposta;
+            
+
+            if (minutos.length == 0) {
+                alert('Campo obrigatório')
+                return;
+            }
+
+            if (minutos <= minutosPlano) {
+                resposta = "Valor a pagar: " + valorPlano.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+            } else {
+                let minutosExcedentes = Number(minutos) - Number(minutosPlano)
+                let valorPagar = (minutosExcedentes * valorMinuto) + valorPlano;
+                resposta = "Valor a pagar: " + valorPagar.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+            }
+
+            document.getElementById("resposta").innerHTML  = resposta;
+        }        
+
+    </script>
+</body>
+</html>
