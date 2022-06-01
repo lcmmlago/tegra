@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 14</h1>
+        <form>
+            <label for="preco">Preço unitário do produto:</label><br>
+            <input type="number" id="preco" name="preco" oninput="validate2(this)" step=".01"><br>
+            <label for="quantidade">Quantidade comprada:</label><br>
+            <input type="number" id="quantidade" name="quantidade"><br>
+            <label for="dinheiro">Dinheiro recebido:</label><br>
+            <input type="number" id="dinheiro" name="dinheiro" oninput="validate2(this)" step=".01"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="resposta"></p>
+    </div>
+    <script>
+
+        var validate2 = function(e) {
+          var t = e.value;
+          e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
+        }
+        
+        function calculaValores() {
+
+        
+            let preco = document.getElementById("preco").value;
+            let quantidade = document.getElementById("quantidade").value;
+            let dinheiro = document.getElementById("dinheiro").value;                        
+
+            if (preco.length == 0) {
+                alert('Preço unitário é obrigatório')
+                return;
+            }
+
+            if (quantidade.length == 0) {
+                alert('Quantidade é obrigatória');
+                return;
+            }
+
+            if (dinheiro.length == 0) {
+                alert('Dinheiro recebido é obrigatório')
+                return;
+            }
+
+            let total = Number(preco) * Number(quantidade);
+            let troco = Number(dinheiro) - Number(total);
+
+            if (troco >= 0) {
+                document.getElementById("resposta").innerHTML  =
+                    "Troco: " + troco.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+            } else {
+                troco = Math.abs(troco);
+                document.getElementById("resposta").innerHTML  =
+                    "Dinheiro insuficiente. Faltam " + troco.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+            }
+        
+            
+        }
+    </script>
+</body>
+</html>
