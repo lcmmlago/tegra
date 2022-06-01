@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 15</h1>
+        <form>
+            <label for="glicose">Digite a medida de glicose:</label><br>
+            <input type="number" id="glicose" name="glicose"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="resposta"></p>
+    </div>
+    <script>
+
+        function calculaValores() {
+
+            let glicose = document.getElementById("glicose").value;
+            let resposta;
+
+            if (glicose.length == 0) {
+                alert('Campo obrigatório')
+                return;
+            }
+
+            if (Number(glicose) < 100) {
+                resposta = "Classificação: NORMAL";   
+            } else if (Number(glicose) >= 100 && Number(glicose) <= 140) {
+                resposta = "Classificação: ELEVADO";   
+            } else {
+                resposta = "Classificação: DIABETES";
+            }
+            
+            document.getElementById("resposta").innerHTML  = resposta;
+        }        
+
+    </script>
+</body>
+</html>
