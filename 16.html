@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 16</h1>
+        <form>
+            <label for="valor1">Primeira distância:</label><br>
+            <input type="number" id="valor1" name="valor1" oninput="validate2(this)" step=".01"><br>
+            <label for="valor2">Segunda distância:</label><br>
+            <input type="number" id="valor2" name="valor2" oninput="validate2(this)" step=".01"><br>
+            <label for="valor3">Terceira distância:</label><br>
+            <input type="number" id="valor3" name="valor3" oninput="validate2(this)" step=".01"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="resposta"></p>
+    </div>
+    <script>
+
+        var validate2 = function(e) {
+          var t = e.value;
+          e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
+        }
+
+        function calculaValores() {
+
+            let valor1 = document.getElementById("valor1").value;
+            let valor2 = document.getElementById("valor2").value;
+            let valor3 = document.getElementById("valor3").value;
+            
+            let maiorDistancia = Math.max(Number(valor1), Number(valor2), Number(valor3));
+
+            document.getElementById("resposta").innerHTML  =
+            "Maior distância: " + maiorDistancia;
+        }        
+
+    </script>
+</body>
+</html>
