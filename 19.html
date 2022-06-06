@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 19</h1>
+        <form>
+            <label for="salario">Digite o salario da pessoa:</label><br>
+            <input type="number" id="salario" name="salario" oninput="validate2(this)" step=".01"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="novoSalario"></p>
+        <p id="aumento"></p>
+        <p id="porcentagem"></p>
+    </div>
+    <script>
+
+        var validate2 = function(e) {
+          var t = e.value;
+          e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
+        }
+
+        function calculaValores() {
+
+            let salario = document.getElementById("salario").value;
+            let novoSalario;
+            let aumento;
+            let porcentagem;
+            
+            if (salario.length == 0) {
+                alert('Salário é obrigatório')
+                return;
+            }
+
+            if (Number(salario) <= 999) {
+                porcentagem = 0.20;                
+            } else if (Number(salario) >= 1000 && Number(salario) <= 2999) {
+                porcentagem = 0.15;
+            } else if (Number(salario) >= 3000 && Number(salario) <= 7999) {
+                porcentagem = 0.10;
+            }  else if (Number(salario) >= 8000) {
+                porcentagem = 0.05;
+            } else {
+                porcentagem = 0;
+            }
+
+            novoSalario = Number(salario) * (1 + porcentagem);
+            aumento = Number(salario) * porcentagem;
+
+            document.getElementById("novoSalario").innerHTML  = "Novo salário: " + novoSalario.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+            document.getElementById("aumento").innerHTML  = "Aumento: " + aumento.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+            document.getElementById("porcentagem").innerHTML  = "Porcentagem: " + porcentagem * 100 + "%";
+            
+        }        
+
+    </script>
+</body>
+</html>

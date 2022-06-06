@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 18</h1>
+        <form>
+            <label for="escala">Escolha a escala de temperatura:</label>
+            <select name="escala" id="escala">
+                <option value="C">Celsius</option>
+                <option value="F">Fahrenheit</option>
+            </select>
+            <br>
+            <label for="temperatura">Digite a temperatura:</label><br>
+            <input type="number" id="temperatura" name="temperatura" oninput="validate2(this)" step=".01"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="resposta"></p>
+    </div>
+    <script>
+
+        var validate2 = function(e) {
+          var t = e.value;
+          e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
+        }
+
+        function calculaValores() {
+
+            let escala = document.getElementById("escala").value;
+            let temperatura = document.getElementById("temperatura").value;
+            let resposta;
+
+            if (temperatura.length == 0) {
+                alert('Temperatura é obrigatória')
+                return;
+            }
+
+            if (escala == "C") {
+                let temperaturaF = Number(temperatura) * 9 / 5 + 32;
+                resposta = "Temperatura equivalente em Fahrenheit: " + temperaturaF.toFixed(2);                    
+            } else {
+                let temperaturaC = (Number(temperatura) - 32) * 5 / 9;
+                resposta = "Temperatura equivalente em Fahrenheit: " + temperaturaC.toFixed(2);                    
+            }
+            
+            document.getElementById("resposta").innerHTML  = resposta;
+            
+        }        
+
+    </script>
+</body>
+</html>

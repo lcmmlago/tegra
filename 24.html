@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 24</h1>
+        <form>
+            <label for="valor1">Digite o primeiro valor:</label><br>
+            <input type="number" id="valor1" name="valor1"><br>
+            <label for="valor2">Digite o segundo valor:</label><br>
+            <input type="number" id="valor2" name="valor2"><br>
+            <label for="valor3">Digite o terceiro valor:</label><br>
+            <input type="number" id="valor3" name="valor3"><br>
+            <label for="valor4">Digite o quarto valor:</label><br>
+            <input type="number" id="valor4" name="valor4"><br>
+            <label for="valor5">Digite o quinto valor:</label><br>
+            <input type="number" id="valor5" name="valor5"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="resposta"></p>
+    </div>
+    <script>
+        var lista =[];
+        function calculaValores() {
+
+            let valor1 = document.getElementById("valor1").value;
+            let valor2 = document.getElementById("valor2").value;
+            let valor3 = document.getElementById("valor3").value;
+            let valor4 = document.getElementById("valor4").value;
+            let valor5 = document.getElementById("valor5").value;
+
+            if (valor1.length == 0) {
+                alert('Primeiro valor é obrigatório');
+                return;
+            }
+
+            if (valor2.length == 0) {
+                alert('Segundo valor é obrigatório');
+                return;
+            }
+
+            if (valor3.length == 0) {
+                alert('Terceiro valor é obrigatório');
+                return;
+            }
+
+            if (valor4.length == 0) {
+                alert('Quarto valor é obrigatório');
+                return;
+            }
+
+            if (valor5.length == 0) {
+                alert('Quinto valor é obrigatório');
+                return;
+            }
+
+            lista.push(valor1);
+            lista.push(valor2);
+            lista.push(valor3);
+            lista.push(valor4);
+            lista.push(valor5);
+
+            lista.sort((a,b) => a-b);
+
+            document.getElementById("resposta").innerHTML  = "Números ordenados: " + lista;
+        }        
+
+    </script>
+</body>
+</html>

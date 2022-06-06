@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 25</h1>
+        <form>
+            <label for="valor1">Digite o dia de nascimento:</label><br>
+            <input type="number" id="valor1" name="valor1"><br>
+            <label for="valor2">Digite o mês de nascimento:</label><br>
+            <input type="number" id="valor2" name="valor2"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="resposta"></p>
+    </div>
+    <script>
+        var lista =[];
+        function calculaValores() {
+
+            let dia = parseInt(document.getElementById("valor1").value);
+            let mes = parseInt(document.getElementById("valor2").value);
+            let signo;
+            
+            if (dia.length == 0) {
+                alert('Dia é obrigatório');
+                return;
+            }
+
+            if (mes.length == 0) {
+                alert('Mês é obrigatório');
+                return;
+            }
+
+            if((dia>=21&&mes==3)||(dia<=20&&mes==4))
+                signo = "Áries";
+            if((dia>=24&&mes==9)||(dia<=23&&mes==10))
+                signo = "Libra";
+            if((dia>=21&&mes==4)||(dia<=21&&mes==5))
+                signo = "Touro";
+            if((dia>=24&&mes==10)||(dia<=22&&mes==11))
+                signo = "Escorpião";
+            if((dia>=22&&mes==5)||(dia<=21&&mes==6))
+                signo = "Gêmeos";
+            if((dia>=23&&mes==11)||(dia<=21&&mes==12))
+                signo = "Sagitário";
+            if((dia>=21&&mes==6)||(dia<=23&&mes==7))
+                signo = "Câncer";
+            if((dia>=22&&mes==12)||(dia<=20&&mes==1))
+                signo = "Capricórnio";
+            if((dia>=24&&mes==7)||(dia<=23&&mes==8))
+                signo = "Leão";
+            if((dia>=21&&mes==1)||(dia<=19&&mes==2))
+                signo = "Aquário";
+            if((dia>=24&&mes==8)||(dia<=23&&mes==9))
+                signo = "Virgem";
+            if((dia>=20&&mes==2)||(dia<=20&&mes==3))
+                signo = "Peixes";
+            
+
+            document.getElementById("resposta").innerHTML  = "Signo: " + signo;
+        }        
+
+    </script>
+</body>
+</html>

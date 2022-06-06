@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 17</h1>
+        <form>
+            <label for="valor1">Primeiro número:</label><br>
+            <input type="number" id="valor1" name="valor1"><br>
+            <label for="valor2">Segundo número:</label><br>
+            <input type="number" id="valor2" name="valor2"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="resposta"></p>
+    </div>
+    <script>
+
+        function calculaValores() {
+
+            let valor1 = document.getElementById("valor1").value;
+            let valor2 = document.getElementById("valor2").value;
+            let resposta;
+
+            if (valor1.length == 0 || Number(valor1) == 0) {
+                alert('Primeiro número é obrigatório e diferente de zero')
+                return;
+            }
+
+            if (valor2.length == 0 || Number(valor2) == 0) {
+                alert('Segundo número é obrigatório e diferente de zero')
+                return;
+            }  
+            
+            let resto = Math.max(Number(valor1), Number(valor2)) % Math.min(Number(valor1), Number(valor2));
+
+            if (resto == 0) {
+                resposta = "São múltiplos";
+            } else {
+                resposta = "Não são múltiplos";
+            }
+
+            document.getElementById("resposta").innerHTML  = resposta;
+        }        
+
+    </script>
+</body>
+</html>

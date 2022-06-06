@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 22</h1>
+        <form>
+            <label for="valor1">Deseja a tabuada para qual valor?</label><br>
+            <input type="number" id="valor1" name="valor1"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <br>
+        <div id="resposta"></div>
+    </div>
+    <script>
+        var pares =[];
+        function calculaValores() {
+
+            let valor1 = document.getElementById("valor1").value;
+            
+            if (valor1.length == 0) {
+                alert('Valor é obrigatório');
+                return;
+            }
+
+            let txt = "";
+            for(var count=1; count<=10 ; count++) {
+                txt += valor1 + " x " + count+" = " + (Number(valor1)*count) + "<br />";
+                document.getElementById("resposta").innerHTML  = txt;
+            }                
+            
+        }        
+
+    </script>
+</body>
+</html>
