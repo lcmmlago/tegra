@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 29</h1>
+        <form>
+            <label for="cnpj">Digite o CNPJ:</label><br>
+            <input type="text" id="cnpj" name="cnpj"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="resposta"></p>
+    </div>
+    <script>
+
+        function calculaValores() {
+
+            let cnpj = document.getElementById("cnpj").value;            
+            let resposta;
+
+            if (cnpj.length == 0) {
+                alert('CNPJ é obrigatório')
+                return;
+            }
+
+            if (verificaCNPJ(cnpj)) {
+                resposta = "CNPJ válido";
+            } else {
+                resposta = "CNPJ inválido";
+            }
+
+            document.getElementById("resposta").innerHTML  = resposta;
+
+        }
+
+        function verificaCNPJ(cnpj) {
+            
+            cnpj = cnpj.replace(/[^\d]+/g,'');
+
+            if(cnpj == '') return false;
+            
+            if (cnpj.length != 14)
+                return false;
+
+            // Elimina CNPJs invalidos conhecidos
+            if (cnpj == "00000000000000" || 
+                cnpj == "11111111111111" || 
+                cnpj == "22222222222222" || 
+                cnpj == "33333333333333" || 
+                cnpj == "44444444444444" || 
+                cnpj == "55555555555555" || 
+                cnpj == "66666666666666" || 
+                cnpj == "77777777777777" || 
+                cnpj == "88888888888888" || 
+                cnpj == "99999999999999")
+                return false;
+                
+            // Valida DVs
+            tamanho = cnpj.length - 2
+            numeros = cnpj.substring(0,tamanho);
+            digitos = cnpj.substring(tamanho);
+            soma = 0;
+            pos = tamanho - 7;
+            for (i = tamanho; i >= 1; i--) {
+            soma += numeros.charAt(tamanho - i) * pos--;
+            if (pos < 2)
+                    pos = 9;
+            }
+            resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+            if (resultado != digitos.charAt(0))
+                return false;
+                
+            tamanho = tamanho + 1;
+            numeros = cnpj.substring(0,tamanho);
+            soma = 0;
+            pos = tamanho - 7;
+            for (i = tamanho; i >= 1; i--) {
+            soma += numeros.charAt(tamanho - i) * pos--;
+            if (pos < 2)
+                    pos = 9;
+            }
+            resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+            if (resultado != digitos.charAt(1))
+                return false;
+                    
+            return true;
+            
+        }        
+
+    </script>
+</body>
+</html>

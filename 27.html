@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 27</h1>
+        <form>
+            <label for="nome">Digite a palavra:</label><br>
+            <input type="text" id="nome" name="nome"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="resposta"></p>
+    </div>
+    <script>
+
+        function calculaValores() {
+
+        
+            let nome = document.getElementById("nome").value;            
+            let resposta;
+
+            if (nome.length == 0) {
+                alert('Nome é obrigatório')
+                return;
+            }
+
+            if (verificaPalindromo(nome)) {
+                resposta = "É palíndromo";
+            } else {
+                resposta = "Não é palíndromo";
+            }
+
+            document.getElementById("resposta").innerHTML  = resposta;
+
+        }
+
+        function verificaPalindromo(str) {
+            var re = /[\W_]/g;
+            var lowRegStr = str.toLowerCase().replace(re, '');
+            var reverseStr = lowRegStr.split('').reverse().join(''); 
+            return reverseStr === lowRegStr;
+        }
+
+
+    </script>
+</body>
+</html>

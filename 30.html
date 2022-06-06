@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Tegra</title>
+</head>
+<body>
+    <div class="container">        
+        <h1>Exercício 30</h1>
+        <form>
+            <label for="valor1">Digite o número:</label><br>
+            <input type="number" id="valor1" name="valor1"><br><br>
+            <input type="button" onclick="calculaValores()" value="Calcular">
+        </form> 
+        <p id="resposta"></p>
+    </div>
+    <script type="javascript" src="node_modules\extenso\dist\extenso.min.js"></script>
+    <script>
+        function calculaValores() {          
+            let numero = parseInt(document.getElementById("valor1").value);                 
+            document.getElementById("resposta").innerHTML  = "Saída: " + extenso(numero);
+        }        
+
+    </script>
+</body>
+</html>
